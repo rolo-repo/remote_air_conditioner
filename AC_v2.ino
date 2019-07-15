@@ -21,14 +21,12 @@
 #include <Button.h>
 #include <Constants.h>
 
-// You should get Auth Token in the Blynk App.
-// Go to the Project Settings (nut icon).
-char auth[] = "BLYNK_AUTH";
+#include "_Secret.h"
 
-// Your WiFi credentials.
-// Set password to "" for open networks.
-char ssid[] = "WIFINAME";
-char pass[] = "PASS";
+/* defined in _Secret.h */
+char auth[] = BLYNK_AUTH;
+char ssid[] = WIFISSID;
+char pass[] = WIFIPASS;
 
 bool focus1 = true;
 bool focus2 = false;
@@ -41,7 +39,6 @@ volatile float g_temperature = 0;
 volatile float g_humidity = 0;
 volatile bool  g_isCool = true;
 
-bool LOCK = false;
 volatile bool connection_sts = false;
 
 IRsend irsend(IR_LED);
@@ -220,18 +217,6 @@ struct TextSize
 };
 
 TextSize textSize[] = { TextSize(0, 0), TextSize(5, 7), TextSize(10, 14), TextSize(15, 21), TextSize(20, 28) };
-/*
-Button(uint8_t i_pin,
-SingleClickHandler i_sc_handler = &Button::onSingleClick,
-DoubleClickHandler i_dc_handler = &Button::onDoubleClick
-LongClickHandler   i_lc_handler = &Button::onLongClick,
-) :
-m_pin(i_pin),(
-*/
-Button_t button( D8, []() { sendIRSignal(C_COOL_21); ack_led.on(); },
-    [](){ focus2 = !focus2; focus1 = !focus1; ( 0 == ++counter % 3 ) ? display.dim(true) : display.dim(false); g_fresh_data = true; },
-    [](){ if (ack_led.getValue() == 0) { sendIRSignal(); ack_led.on(); } else { sendIRSignal(C_OFF); ack_led.off(); } }
-    );
 
 short printTemperature(float i_data, bool i_focuse)
 {
@@ -304,6 +289,11 @@ short printHumidity( float i_data, bool i_focuse, char i_sighn )
 
 void loop()
 {
+	static Button_t button(D8, []() { sendIRSignal(C_COOL_21); ack_led.on(); },
+		[]() { focus2 = !focus2; focus1 = !focus1; (0 == ++counter % 3) ? display.dim(true) : display.dim(false); g_fresh_data = true; },
+		[]() { if (ack_led.getValue() == 0) { sendIRSignal(); ack_led.on(); } else { sendIRSignal(C_OFF); ack_led.off(); } }
+	);
+
     Blynk.run();
     timer.run();
     button.run();
@@ -353,10 +343,7 @@ void loop()
           display.println("Not Connected");
         }
 
-
-      
-
-       NEXT:
+       NEXT: //I know it is ugly but it works
          display.display();
     }
 
