@@ -21,7 +21,7 @@
 #include <Button.h>
 #include <Constants.h>
 
-#include "_Secret.h"
+#include "_secret.h"
 
 /* defined in _Secret.h */
 char auth[] = BLYNK_AUTH;
