@@ -7,7 +7,7 @@ in c++ code format : **#define** , example :
 #define WIFIPASS	"WiFI_Pass_Should be left "" in case of no password"
 #define BLYNK_AUTH	"Blynk auth id given in the mail"
 ```
-[utils library](https://github.com/rolo-repo/arduino-utils).
+[utils library](https://github.com/rolo-repo/arduino-utils) - should be installed as prerequisite
 
 the Blynk application could be downloaded from follwoing link 
 
