@@ -1,12 +1,12 @@
 The sketch tested on Wemos chip
 The code assumes connection to WiFi and Blynk service 
-all connection details are given in file _secret.h
-in c++ code format : #define , example :
-/**********************************************/
+all connection details are given in file \_secret.h
+in c++ code format : **#define** , example :
+...
 #define WIFISSID	"WiFI_SSID"
 #define WIFIPASS	"WiFI_Pass_Should be left "" in case of no password"
 #define BLYNK_AUTH	"Blynk auth id given in the mail"
-/*********************************************/
+...
 
 the Blynk application could be downloaded from follwoing link 
 To start using it:
