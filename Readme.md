@@ -13,4 +13,4 @@ To start using it:
 2. Touch the QR-code icon and point the camera to the code below
 3. Enjoy my app!
 
-![The App](master/AC_ControllerApp.png)
+![The App](https://github.com/rolo-repo/remote_air_conditioner/blob/master/AC_ControllerApp.png)
