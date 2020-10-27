@@ -7,7 +7,7 @@ Connect to it (you might need to go to airplane mode on some smartphones ) , ope
 
 Fill up all the form details
 
-Apon submit the device will restart and connect to your home network.
+After submit ,the device will restart and connect to your home network.
 
 Once connected following urls are supported :
 
