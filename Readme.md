@@ -2,8 +2,11 @@ The sketch tested on Wemos chip
 The code assumes connection to WiFi and Blynk service
 
 After power up the device , search for WiFi network called WebIR....
+
 Connect to it (you might need to go to airplane mode on some smartphones ) , open a browser on address http://192.168.2.1
+
 Fill up all the form details
+
 Apon submit the device will restart and connect to your home network.
 
 Once connected following urls are supported :
