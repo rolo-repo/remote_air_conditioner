@@ -873,6 +873,8 @@ void updateDisplay(float i_temperature, float i_humidity, bool i_isconnected)
 		(*display).println();
 		(*display).println("Not Connected");
 	}
+
+	(*display).display();
 }
 
 BLYNK_WRITE(V0)
