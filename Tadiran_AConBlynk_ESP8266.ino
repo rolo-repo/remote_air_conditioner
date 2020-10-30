@@ -883,7 +883,7 @@ BLYNK_WRITE(V0)
 
 	LOG_MSG("About to send COOL 21 or HOT 27 IR signal");
 
-	irSend((g_isCool) ? ir_coded[IR_COLD_LOW] : ir_coded[IR_HOT_HIGH]);
+	irSend((g_isCool) ? ir_coded[IR_COLD_HIGH] : ir_coded[IR_HOT_HIGH]);
 
 	ackLed.on();//sending to Blynk
 
@@ -923,7 +923,7 @@ BLYNK_WRITE(V5)
 
 	LOG_MSG("About to send COOL 23 IR or HOT 25 signal");
 
-	irSend((g_isCool) ? ir_coded[IR_COLD_HIGH] : ir_coded[IR_HOT_LOW]);
+	irSend((g_isCool) ? ir_coded[IR_COLD_LOW] : ir_coded[IR_HOT_LOW]);
 
 	stsRedLed.rapid_blynk(300);
 
