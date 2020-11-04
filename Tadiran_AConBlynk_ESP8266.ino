@@ -133,7 +133,7 @@ auto bmeReadTemperature()
 
 	float temperature = (bme.enabled) ? (*bme).readTemperature() : NAN;
 
-	if ( temperature > 25 ) 
+	//if ( temperature > 25 ) 
 		temperature -= 5 ;
 
 	return   ((temperature != NAN) ? temperature : 0.0F);
