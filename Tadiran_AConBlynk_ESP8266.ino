@@ -10,9 +10,10 @@
 #include <Adafruit_SSD1306.h>
 
 #include <BlynkSimpleEsp8266.h>
-#include <ESP8266SSDP.h>   
-#define DECODE_AC
-#define DECODE_GREE
+#include <ESP8266SSDP.h>
+
+#define DECODE_AC 1
+#define DECODE_GREE 1
 
 #include <IRrecv.h>
 #include <IRutils.h>
@@ -33,10 +34,10 @@
 
 
 #include "iostream"
-#include "Pair.h"
 #include "SetupBlynkAndWifi.h"
 
 using namespace arduino::utils;
+
 ESP8266WebServer  server(80);
 
 const char* const HTML_open = "<!DOCTYPE html><html><head></head>";
@@ -127,6 +128,16 @@ struct
 	Adafruit_SSD1306& operator*() { return display; }
 } display;
 
+Pair<float,float> bmeReadPressure()
+{
+	LOG_MSG("About to read sensors data - preasure");
+	float pressure = (bme.enabled) ? (*bme).readPressure() : NAN;
+	float pressureAt = (float)(pressure / 100) * 0.000986F;
+	float pressureHpa = (float)(pressure / 100);
+
+	return make_Pair(pressureAt, pressureHpa);
+}
+
 auto bmeReadTemperature()
 {
 	LOG_MSG("About to read sensors data - temperature");
@@ -148,15 +159,7 @@ auto bmeReadHumidity()
 	return   ((humidity != NAN) ? humidity : 0.0F);
 }
 
-Pair< float, float >  bmeReadPressure()
-{
-	LOG_MSG("About to read sensors data - preasure");
-	float pressure = (bme.enabled) ? (*bme).readPressure() : NAN;
-	float pressureAt = (float)(pressure / 100) * 0.000986F;
-	float pressureHpa = (float)(pressure / 100);
 
-	return make_Pair(pressureAt, pressureHpa);
-}
 
 void irRecieveAndSave(BufferAndSize_t<uint16, uint16 > &buff)
 {
@@ -551,6 +554,8 @@ void notFound() {
 	}
 	server.send(404, "text/plain", message);
 }
+
+void updateDisplay(float , float , bool );
 
 void setup() {
 
